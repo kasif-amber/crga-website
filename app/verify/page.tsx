@@ -1,12 +1,17 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function VerifyPage() {
   const [certificateNumber, setCertificateNumber] = useState("");
-  const [result, setResult] = useState<any>(null);
+  const [error, setError] = useState("");
+
+  const router = useRouter();
 
   async function verifyCertificate() {
+    setError("");
+
     const response = await fetch("/api/verify", {
       method: "POST",
       headers: {
@@ -18,20 +23,40 @@ export default function VerifyPage() {
     });
 
     const data = await response.json();
-    setResult(data);
+
+    console.log("API Response:", data);
+
+if (data.found) {
+  router.push(
+    `/certificates/${data.certificateNumber}`
+  );
+} else {
+  setError("Certificate Not Found");
+}
+
+    if (data.found) {
+      router.push(
+        `/certificates/${data.certificateNumber}`
+      );
+    } else {
+      setError("Certificate Not Found");
+    }
   }
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-center gap-4">
+
       <h1 className="text-4xl font-bold">
-        PTCG Certificate Verification
+        CRGA Certificate Verification
       </h1>
 
       <input
         type="text"
         placeholder="Enter Certificate Number"
         value={certificateNumber}
-        onChange={(e) => setCertificateNumber(e.target.value)}
+        onChange={(e) =>
+          setCertificateNumber(e.target.value)
+        }
         className="border p-3 rounded-lg w-80"
       />
 
@@ -42,25 +67,12 @@ export default function VerifyPage() {
         Verify Certificate
       </button>
 
-      {result && result.found && (
-        <div className="border p-4 rounded-lg w-80">
-          <p>
-            <strong>Certificate:</strong> {result.certificateNumber}
-          </p>
-          <p>
-            <strong>Card:</strong> {result.cardName}
-          </p>
-          <p>
-            <strong>Grade:</strong> {result.grade}
-          </p>
+      {error && (
+        <div className="border p-4 rounded-lg w-80 text-center">
+          {error}
         </div>
       )}
 
-      {result && !result.found && (
-        <div className="border p-4 rounded-lg w-80">
-          Certificate Not Found
-        </div>
-      )}
     </main>
   );
 }

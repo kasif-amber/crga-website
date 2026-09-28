@@ -8,11 +8,22 @@ export default function Navbar() {
         <Logo />
 
         <div className="flex gap-6">
-          <Link href="/">Home</Link>
-          <Link href="/verify">Verify</Link>
-          <Link href="/about">About</Link>
+          <div className="flex gap-6">
+  <Link href="/">Home</Link>
+
+  <Link href="/pricing">Pricing</Link>
+
+  <Link href="/population">Population</Link>
+
+  <Link href="/submit">Submit</Link>
+
+  <Link href="/verify">Verify</Link>
+
+  <Link href="/about">About</Link>
+</div>
         </div>
       </div>
     </nav>
   );
 }
+
