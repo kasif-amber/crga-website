@@ -114,12 +114,11 @@ export default function PricingPage() {
             </ul>
 
             <Link
-              href="/submit"
+              href={`/submit?service=${plan.name}`}
               className="block text-center bg-black text-white py-3 rounded-lg"
-            >
-              Submit Cards
-            </Link>
-
+              >
+             Submit Cards
+             </Link>
           </div>
         ))}
 
