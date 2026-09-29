@@ -3,27 +3,60 @@ import Logo from "./Logo";
 
 export default function Navbar() {
   return (
-    <nav className="border-b bg-white">
-      <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+    <nav className="sticky top-0 z-50 border-b border-white/10 bg-[#0b0d0f]/95 backdrop-blur">
+
+      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+
         <Logo />
 
-        <div className="flex gap-6">
-          <div className="flex gap-6">
-  <Link href="/">Home</Link>
+        <div className="flex items-center gap-8 font-medium text-white">
 
-  <Link href="/pricing">Pricing</Link>
+          <Link
+  href="/"
+  className="transition hover:text-[#d4af37]"
+>
+  Home
+</Link>
 
-  <Link href="/population">Population</Link>
+          <Link
+            href="/pricing"
+            className="transition hover:text-[#d4af37]"
+          >
+            Pricing
+          </Link>
 
-  <Link href="/submit">Submit</Link>
+          <Link
+            href="/population"
+            className="transition hover:text-[#d4af37]"
+          >
+            Population
+          </Link>
 
-  <Link href="/verify">Verify</Link>
+          <Link
+            href="/submit"
+            className="transition hover:text-[#d4af37]"
+          >
+            Submit
+          </Link>
 
-  <Link href="/about">About</Link>
-</div>
+          <Link
+            href="/verify"
+            className="transition hover:text-[#d4af37]"
+          >
+            Verify
+          </Link>
+
+          <Link
+            href="/about"
+            className="transition hover:text-[#d4af37]"
+          >
+            About
+          </Link>
+
         </div>
+
       </div>
+
     </nav>
   );
 }
-
